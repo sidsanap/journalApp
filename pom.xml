@@ -15,8 +15,8 @@
 	<description>E2EE Journal App</description>
 	<properties>
 		<java.version>1.8</java.version>
-			<sonar.organization>onlinestudy</sonar.organization>
-			<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.organization>onlinestudy</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -40,7 +40,15 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -54,6 +62,10 @@
             <version>5.10.3</version>
             <scope>test</scope>
         </dependency>
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
     </dependencies>
 
 	<build>
