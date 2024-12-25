@@ -1,24 +1,20 @@
-# Start with a Maven base image to include Maven and JDK
-FROM maven:3.8.8-openjdk-17-slim AS build
+FROM openjdk:17-jdk-slim
+
+# Install Maven
+RUN apt-get update && apt-get install -y maven
 
 # Set the working directory
 WORKDIR /app
 
-# Copy the Maven project files
+# Copy the project files
 COPY pom.xml .
 COPY src ./src
 
 # Build the application
 RUN mvn clean package -DskipTests
 
-# Use a slim OpenJDK image for running the application
-FROM openjdk:17-jdk-slim
-
-WORKDIR /app
-
-# Copy the built JAR file from the build stage
-COPY --from=build /app/target/journalApp.jar app.jar
-
+# Expose the port
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Start the application
+ENTRYPOINT ["java", "-jar", "target/journalApp.jar"]
